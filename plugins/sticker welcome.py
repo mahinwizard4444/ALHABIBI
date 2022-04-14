@@ -128,7 +128,7 @@ async def ping(bot, message):
 async def sticker_group(bot, message):
    try:
       chat_id = int(message.chat.id)
-      count = await Client.get_chat_members_count(chat_id)
+      count = await Bot.get_chat_members_count(chat_id)
       if count == 3:
                     await bot.send_sticker(chat_id,"CAACAgUAAxkBAAIFKmDd2r4NMyGSyWgVu2v-fQxvJxBxAAL1AgACufE4VgHHxPJeyWOKHgQ")
       elif count == 5:

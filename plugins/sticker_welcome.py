@@ -8,21 +8,17 @@ from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message, Sticker, Document, ChatMember
-from info import BOT_TOKEN, API_ID, API_HASH
-    
-API_ID = os.environ.get('API_ID')
-API_HASH = int(os.environ('API_HASH')
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
+ 
 
 
-bot_token = os.environ["BOT_TOKEN"],
-api_id = int(os.environ["API_ID"]),
-api_hash = os.environ["API_HASH"]
+BOT_TOKEN = os.environ["BOT_TOKEN"],
+API_ID = int(os.environ["API_ID"]),
+API_HASH = os.environ["API_HASH"]
 
 
 Bot = Client(
     "Member-Sticker-Bot",
-    bot_token = os.environ["BOT_TOKEN"],
+    bot_token = os.environ.["BOT_TOKEN"],
     api_id = int(os.environ["API_ID"]),
     api_hash = os.environ["API_HASH"]
 )

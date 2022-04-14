@@ -8,18 +8,13 @@ from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message, Sticker, Document, ChatMember
- 
+from info import BOT_TOKEN, API_ID, API_HASH
 
 
 
 
 
-Bot = Client(
-    "Member-Sticker-Bot",
-    bot_token = os.environ.["BOT_TOKEN"],
-    api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"]
-)
+
 
 START_STRING_PRIVATE = """ Hi {}, I'm Member Sticker Bot. 
  I Can Send Relevant Thankyou Sticker in Groups and Channel

@@ -18,25 +18,25 @@ logging.getLogger(__name__)
 
 is_env = bool(os.environ.get("ENV", None))
 if is_env:
-    app_id = int(os.environ.get("APP_ID"))
-    api_hash = os.environ.get("API_HASH")
-    bot_token = os.environ.get("BOT_TOKEN")
+    tg_app_id = int(os.environ.get("TG_APP_ID"))
+    tg_api_key = os.environ.get("TG_API_HASH")
+    bot_api_key = os.environ.get("TG_BOT_TOKEN")
 
     some_sticker_bot = Client(
-        app_id=app_id,
-        api_hash=api_hash,
+        api_id=tg_app_id,
+        api_hash=tg_api_key,
         session_name=":memory:",
-        bot_token=bot_token,
+        bot_token=bot_api_key,
         workers=200
     )
 else:
     app_config = configparser.ConfigParser()
     app_config.read("config.ini")
-    bot_token = app_config.get("bot-configuration", "bot_token")
+    bot_api_key = app_config.get("bot-configuration", "api_key")
 
     some_sticker_bot = Client(
         session_name="some_sticker_bot",
-        bot_token=bot_token,
+        bot_token=bot_api_key,
         workers=200
     )
 
@@ -117,7 +117,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
                     (bottom_right_point[0], bottom_right_point[1] - corner_radius)], fill=outline)
 
 
-@Client.on_message(filters.command("starts"))
+@some_sticker_bot.on_message(filters.command("start"))
 async def start_handler(c: Client, m: Message):
     await m.reply_text(
         "Hi, I just create telegram sticker from the text messages you send me. \nMy creator @eyaadh did a YouTube "
@@ -127,7 +127,7 @@ async def start_handler(c: Client, m: Message):
     )
 
 
-@Client.on_message(filters.command("helps"))
+@some_sticker_bot.on_message(filters.command("help"))
 async def help_handler(c: Client, m: Message):
     await m.reply_text(
         "Hi, I do not have much to say on help - I just create telegram stickers from the text messages you send me. "
@@ -221,14 +221,14 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
 
-@Client.on_message(filters.text & filters.private & (~filters.command("starts") | ~filters.command("helps")))
+@some_sticker_bot.on_message(filters.text & filters.private & (~filters.command("start") | ~filters.command("help")))
 async def create_sticker_private_handler(c: Client, m: Message):
     s = await m.reply_text("...")
     await create_sticker(c, m)
     await s.delete()
 
 
-@Client.on_message(filters.command(["stickers", "s"]) & filters.reply & filters.group)
+@some_sticker_bot.on_message(filters.command(["sticker", "s"]) & filters.reply & filters.group)
 async def create_sticker_group_handler(c: Client, m: Message):
     s = await m.reply_text("...", reply_to_message_id=m.message_id)
     await create_sticker(c, m.reply_to_message)

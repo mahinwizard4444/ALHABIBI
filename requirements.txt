@@ -69,3 +69,4 @@ youtube-dl
 pyrogram
 tgcrypto
 
+python-decouple

@@ -23,7 +23,7 @@ if is_env:
     bot_token = os.environ.get("BOT_TOKEN")
 
     some_sticker_bot = Client(
-        api_id=app_id,
+        app_id=app_id,
         api_hash=api_hash,
         session_name=":memory:",
         bot_token=bot_token,
@@ -32,7 +32,7 @@ if is_env:
 else:
     app_config = configparser.ConfigParser()
     app_config.read("config.ini")
-    bot_token = app_config.get("bot-configuration", "api_key")
+    bot_token = app_config.get("bot-configuration", "bot_token")
 
     some_sticker_bot = Client(
         session_name="some_sticker_bot",

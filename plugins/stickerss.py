@@ -117,7 +117,7 @@ async def rounded_rectangle(rectangle, xy, corner_radius, fill=None, outline=Non
                     (bottom_right_point[0], bottom_right_point[1] - corner_radius)], fill=outline)
 
 
-@some_sticker_bot.on_message(filters.command("start"))
+@Client.on_message(filters.command("starts"))
 async def start_handler(c: Client, m: Message):
     await m.reply_text(
         "Hi, I just create telegram sticker from the text messages you send me. \nMy creator @eyaadh did a YouTube "
@@ -127,7 +127,7 @@ async def start_handler(c: Client, m: Message):
     )
 
 
-@some_sticker_bot.on_message(filters.command("help"))
+@Client.on_message(filters.command("helps"))
 async def help_handler(c: Client, m: Message):
     await m.reply_text(
         "Hi, I do not have much to say on help - I just create telegram stickers from the text messages you send me. "
@@ -221,14 +221,14 @@ async def create_sticker(c: Client, m: Message):
         logging.error(e)
 
 
-@some_sticker_bot.on_message(filters.text & filters.private & (~filters.command("start") | ~filters.command("help")))
+@Client.on_message(filters.text & filters.private & (~filters.command("starts") | ~filters.command("helps")))
 async def create_sticker_private_handler(c: Client, m: Message):
     s = await m.reply_text("...")
     await create_sticker(c, m)
     await s.delete()
 
 
-@some_sticker_bot.on_message(filters.command(["sticker", "s"]) & filters.reply & filters.group)
+@Client.on_message(filters.command(["stickers", "s"]) & filters.reply & filters.group)
 async def create_sticker_group_handler(c: Client, m: Message):
     s = await m.reply_text("...", reply_to_message_id=m.message_id)
     await create_sticker(c, m.reply_to_message)

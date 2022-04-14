@@ -14,7 +14,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message, Sticker, Document, ChatMember
 
-
+API_ID = int(os.environ('API_ID')
 
 @Client.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   

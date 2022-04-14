@@ -1224,12 +1224,12 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     await asyncio.sleep(10)
     await fmsg.delete()
     await message.reply_text(
-    text=random.choice(DEL_TEXT),
+    text=await message.reply_text(text=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️,
     parse_mode="html",
     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_update")
+                                InlineKeyboardButton('🎁𝐆𝐫𝐨𝐮𝐩🎁', url="http://t.me/nasrani_update")
                             ],
                                                         
                         ]

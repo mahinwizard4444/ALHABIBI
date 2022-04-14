@@ -3,13 +3,15 @@ from os import error
 import logging
 import pyrogram
 import time
-import bot
+
 from decouple import config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message, Sticker, Document, ChatMember
-from info import BOT_TOKEN, API_ID, API_HASH
 
+API_ID = os.environ.get('API_ID')
+API_HASH = os.environ.get('API_HASH')
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
 
 

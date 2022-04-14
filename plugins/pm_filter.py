@@ -2433,7 +2433,7 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     await asyncio.sleep(10)
     await fmsg.delete()
     await message.reply_text(
-    text=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️,
+    text=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
     parse_mode="html",
     reply_markup=InlineKeyboardMarkup(
                         [

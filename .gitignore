@@ -146,3 +146,14 @@ cython_debug/
 config.py
 .goutputstream-VAFWB1
 result.json
+
+
+
+/venv/
+.idea/
+.env
+*.ini
+*.cfg
+*.session
+*.json
+*/__pycache__/

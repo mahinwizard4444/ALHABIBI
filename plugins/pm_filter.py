@@ -198,7 +198,7 @@ async def advantage_spoll_choker(bot, query):
         )
             k = await query.message.edit('😄നിങ്ങളുടെ മൂവീസ് ഉടനെ ആഡ് ചെയ്യുന്നതാണ്.@nasrani_update_join @munnipopz')
         await asyncio.sleep(10000)
-        await k.delete()
+        
 
 
 @Client.on_callback_query()

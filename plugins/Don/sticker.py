@@ -14,9 +14,9 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.types import User, Message, Sticker, Document, ChatMember
 
-API_ID = os.environ.get('API_ID')
-API_HASH = os.environ.get('API_HASH')
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
+API_ID = int(os.environ('API_ID')
+API_HASH = os.environ('API_HASH')
+BOT_TOKEN = os.environ('BOT_TOKEN')
 
 @Client.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
@@ -29,7 +29,111 @@ async def stickerid(bot, message):
 
 
 
-@Client.on_message(filters.command(["pings"]))
+
+
+START_STRING_PRIVATE = """ Hi {}, I'm Member Sticker Bot. 
+ I Can Send Relevant Thankyou Sticker in Groups and Channel
+\n All Member count doesn't return a sticker, so I will send a Thank you message for the count which have no sticker,
+This message will be deleted after 10 second. \n
+Nothing to Do here !! 😕
+**ADD ME TO A GROUP THEN TRIGGER ME**
+"""
+
+START_STRING_GROUP = """ **I need Admin rights to Send sticker in {}**
+
+`Join My Updates Channel for Getting more familiar with me`
+
+"""
+
+ABOUT = """
+● **BOT:** `Member Sticker BOT` 
+● **AUTHOR :** [bughunter0](https://t.me/bughunter0) 
+● **SERVER :** `Heroku` 
+● **LIBRARY :** `Pyrogram` 
+● **LANGUAGE :** `Python 3.9` 
+● **SOURCE :** [BugHunterBots](https://t.me/BugHunterBots/93) 
+
+"""
+HELP = """
+● Still Wonder How I Work ? 
+● Use /How get a Full Brief
+● Use /Donate to Donate
+"""
+
+
+CHANNEL_BUTTON = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('↗ Join Here ↗', url='https://t.me/BughunterBots')
+        ]]
+    )
+ADDME_BUTTON = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('↗ ADD ME TO A GROUP ↗', url="t.me/member_sticker_bot?startgroup=true")
+        ]]
+    )
+START_BUTTON = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('ABOUT',callback_data='cbabout'),
+        InlineKeyboardButton('HELP',callback_data='cbhelp')
+        ],
+        [
+        InlineKeyboardButton('↗ Join Here ↗', url='https://t.me/BughunterBots'),
+        ],
+        [InlineKeyboardButton('↗ ADD ME TO A GROUP ↗', url="t.me/member_sticker_bot?startgroup=true")
+        ]]
+        
+    )
+CLOSE_BUTTON = InlineKeyboardMarkup(
+        [[
+        InlineKeyboardButton('Back',callback_data='cbclose'),
+        ]]
+    )
+
+@Client.on_callback_query() # callbackQuery()
+async def cb_data(bot, update):  
+    if update.data == "cbhelp":
+        await update.message.edit_text(
+            text=HELP,
+            reply_markup=CLOSE_BUTTON,
+            disable_web_page_preview=True
+        )
+    elif update.data == "cbabout":
+        await update.message.edit_text(
+            text=ABOUT,
+            reply_markup=CLOSE_BUTTON,
+            disable_web_page_preview=True
+        )
+    else:
+        await update.message.edit_text(
+            text=START_STRING_PRIVATE.format(update.from_user.mention),
+            disable_web_page_preview=True,
+            reply_markup=START_BUTTON
+        )
+
+
+@Client.on_message(filters.command(["start"]) & filters.private)
+async def start_private(bot, update):
+    text = START_STRING_PRIVATE.format(update.from_user.mention)
+    reply_markup = START_BUTTON
+    await update.reply_text(
+        text=text,
+        disable_web_page_preview=True,
+        reply_markup=reply_markup,
+        quote=True
+    )
+
+@Client.on_message((filters.command(["start"]) & filters.group) | filters.regex("/start@member_sticker_bot"))
+async def start_group(bot, update):
+    text = START_STRING_GROUP.format(update.chat.title)
+    reply_markup = CHANNEL_BUTTON
+    await update.reply_text(
+        text=text,
+        disable_web_page_preview=True,
+        reply_markup=reply_markup,
+        quote=True
+    )
+
+@Client.on_message(filters.command(["ping"]))
 async def ping(bot, message):
     start_t = time.time()
     rm = await message.reply_text("Checking")
@@ -388,4 +492,20 @@ async def sticker_group(bot, message):
             
    except Exception as error:
             await message.reply("@admins , \nAs per Your Group Permission Members of This Group Can't send Stickers to this Chat (`I'm a Member, Not an Admin`) .\n**To Solve this Issue add me as Admin Or Give permission to send stickers in the Chat** \n\n\n ©@BugHunterBots")
+
+
+@Client.on_message(filters.channel & filters.command(["start"]))
+async def sticker_channel(bot, message):
+ chat_id = int(message.chat.id)
+ await bot.send_message(text="We Are Working On It",chat_id=chat_id)
+ 
+
+
+
+@Client.on_message(filters.command(["help"]))
+async def help(bot, message):
+ chat_id = str(message.chat.id)
+ await bot.send_sticker(chat_id,"CAACAgIAAxkBAAEEDq1g6Y5LLm2DtFwCV2pPNCddwwZQHgAC6AkAAowucAABsFGHedLEzeUgBA")  
+ 
+
 

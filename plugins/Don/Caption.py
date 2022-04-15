@@ -2,9 +2,13 @@ import os
 from pyromod import listen
 from pyrogram import Client, filters
 
-from C import Config
 
-from info import SESSION, API_ID, API_HASH, BOT_TOKEN
+Bot = Client(
+    "Instant-Caption-Adder",
+    bot_token = os.environ["BOT_TOKEN"],
+    api_id = int(os.environ["API_ID"]),
+    api_hash = os.environ["API_HASH"]
+)
 
 CAPTION = os.environ.get("CAPTION", None)
 

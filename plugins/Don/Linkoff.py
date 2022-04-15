@@ -2,12 +2,7 @@ import os
 import pyrogram
 from pyrogram import Client, filters
 
-Bot = Client(
-    "NoLink-BOT",
-    bot_token = os.environ["BOT_TOKEN"],
-    api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"]
-)
+
 
 @Client.on_message(filters.regex("http") | filters.regex("www") | filters.regex("t.me"))
 async def nolink(bot,message):

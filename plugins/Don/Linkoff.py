@@ -6,6 +6,9 @@ from pyrogram import Client, filters
 
 from C import Config
 
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_STR
+
+
 
 API_ID = os.environ.get('API_ID')
 API_HASH = os.environ.get('API_HASH')

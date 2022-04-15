@@ -1,29 +1,15 @@
 import os 
 import pyrogram
 from pyrogram import Client, filters
-import os
-from pyrogram import Client, filters
 
-from C import Config
+Bot = Client(
+    "NoLink-BOT",
+    bot_token = os.environ["BOT_TOKEN"],
+    api_id = int(os.environ["API_ID"]),
+    api_hash = os.environ["API_HASH"]
+)
 
-from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_STR
-
-
-
-API_ID = os.environ.get('API_ID')
-API_HASH = os.environ.get('API_HASH')
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
-
-
-
-
-
-@Client.on_message(filters.forwarded)
-async def forward(bot, message):
-	await message.delete()
-
-
-@Client.on_message(filters.regex("http") | filters.regex("www") | filters.regex("@") | filters.regex("t.me"))
+@Client.on_message(filters.regex("http") | filters.regex("www") | filters.regex("t.me"))
 async def nolink(bot,message):
 	try:
 		await message.delete()

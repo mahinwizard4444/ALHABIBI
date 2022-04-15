@@ -63,7 +63,7 @@ async def escape_mentions_using_curly_brackets_wl(
     return teks
 
 
-@Alita.on_message(command("cleanwelcome") & admin_filter)
+@Client.on_message(command("cleanwelcome") & admin_filter)
 async def cleanwlcm(_, m: Message):
     db = Greetings(m.chat.id)
     status = db.get_current_cleanwelcome_settings()
@@ -84,7 +84,7 @@ async def cleanwlcm(_, m: Message):
     return
 
 
-@Alita.on_message(command("cleangoodbye") & admin_filter)
+@Client.on_message(command("cleangoodbye") & admin_filter)
 async def cleangdbye(_, m: Message):
     db = Greetings(m.chat.id)
     status = db.get_current_cleangoodbye_settings()
@@ -105,7 +105,7 @@ async def cleangdbye(_, m: Message):
     return
 
 
-@Alita.on_message(command("cleanservice") & admin_filter)
+@Client.on_message(command("cleanservice") & admin_filter)
 async def cleanservice(_, m: Message):
     db = Greetings(m.chat.id)
     status = db.get_current_cleanservice_settings()
@@ -126,7 +126,7 @@ async def cleanservice(_, m: Message):
     return
 
 
-@Alita.on_message(command("setwelcome") & admin_filter & bot_admin_filter)
+@Client.on_message(command("setwelcome") & admin_filter & bot_admin_filter)
 async def save_wlcm(_, m: Message):
     db = Greetings(m.chat.id)
     if m and not m.from_user:
@@ -164,7 +164,7 @@ async def save_wlcm(_, m: Message):
     return
 
 
-@Alita.on_message(command("setgoodbye") & admin_filter & bot_admin_filter)
+@Client.on_message(command("setgoodbye") & admin_filter & bot_admin_filter)
 async def save_gdbye(_, m: Message):
     db = Greetings(m.chat.id)
     if m and not m.from_user:
@@ -202,7 +202,7 @@ async def save_gdbye(_, m: Message):
     return
 
 
-@Alita.on_message(command("resetgoodbye") & admin_filter & bot_admin_filter)
+@Client.on_message(command("resetgoodbye") & admin_filter & bot_admin_filter)
 async def resetgb(_, m: Message):
     db = Greetings(m.chat.id)
     if m and not m.from_user:
@@ -213,7 +213,7 @@ async def resetgb(_, m: Message):
     return
 
 
-@Alita.on_message(command("resetwelcome") & admin_filter & bot_admin_filter)
+@Client.on_message(command("resetwelcome") & admin_filter & bot_admin_filter)
 async def resetwlcm(_, m: Message):
     db = Greetings(m.chat.id)
     if m and not m.from_user:
@@ -224,7 +224,7 @@ async def resetwlcm(_, m: Message):
     return
 
 
-@Alita.on_message(filters.service & filters.group, group=59)
+@Client.on_message(filters.service & filters.group, group=59)
 async def cleannnnn(_, m: Message):
     db = Greetings(m.chat.id)
     clean = db.get_current_cleanservice_settings()
@@ -235,7 +235,7 @@ async def cleannnnn(_, m: Message):
         pass
 
 
-@Alita.on_chat_member_updated(filters.group, group=69)
+@Client.on_chat_member_updated(filters.group, group=69)
 async def member_has_joined(c: Alita, member: ChatMemberUpdated):
 
     if (
@@ -316,7 +316,7 @@ async def member_has_joined(c: Alita, member: ChatMemberUpdated):
         return
 
 
-@Alita.on_chat_member_updated(filters.group, group=99)
+@Client.on_chat_member_updated(filters.group, group=99)
 async def member_has_left(c: Alita, member: ChatMemberUpdated):
 
     if (
@@ -383,7 +383,7 @@ async def member_has_left(c: Alita, member: ChatMemberUpdated):
         return
 
 
-@Alita.on_message(command("welcome") & admin_filter)
+@Client.on_message(command("welcome") & admin_filter)
 async def welcome(c: Alita, m: Message):
     db = Greetings(m.chat.id)
     status = db.get_welcome_status()
@@ -430,7 +430,7 @@ async def welcome(c: Alita, m: Message):
     return
 
 
-@Alita.on_message(command("goodbye") & admin_filter)
+@Client.on_message(command("goodbye") & admin_filter)
 async def goodbye(c: Alita, m: Message):
     db = Greetings(m.chat.id)
     status = db.get_goodbye_status()

@@ -17,6 +17,15 @@ from pyrogram.types import User, Message, Sticker, Document, ChatMember
 from C import Config
 
 
+bughunter0 = Client(
+    "Member-Sticker-Bot",
+    bot_token = os.environ["BOT_TOKEN"],
+    api_id = int(os.environ["API_ID"]),
+    api_hash = os.environ["API_HASH"]
+)
+
+
+
 @Client.on_message(filters.command(["stickerid"]))
 async def stickerid(bot, message):   
     if message.reply_to_message.sticker:
@@ -144,7 +153,7 @@ async def ping(bot, message):
 async def sticker_group(bot, message):
    try:
       chat_id = int(message.chat.id)
-      count = await message.get_chat_members_count(chat_id)
+      count = await bughunter0.get_chat_members_count(chat_id)
       if count == 3:
                     await bot.send_sticker(chat_id,"CAACAgUAAxkBAAIFKmDd2r4NMyGSyWgVu2v-fQxvJxBxAAL1AgACufE4VgHHxPJeyWOKHgQ")
       elif count == 5:

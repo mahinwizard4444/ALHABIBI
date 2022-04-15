@@ -17,7 +17,7 @@ from pyrogram.types import User, Message, Sticker, Document, ChatMember
 from C import Config
 
 
- © BugHunterCodeLabs ™
+# © BugHunterCodeLabs ™
 # © bughunter0
 # 2021
 # Copyright - https://en.m.wikipedia.org/wiki/Fair_use

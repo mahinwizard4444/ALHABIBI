@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 import os
 from pyrogram import Client, filters
 
-
+from C import Config
 
 
 

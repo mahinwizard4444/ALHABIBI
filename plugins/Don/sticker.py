@@ -37,22 +37,9 @@ from pyrogram.types import User, Message, Sticker, Document
 
     
 
-API_ID = os.environ.get('API_ID')
-API_HASH = os.environ.get('API_HASH')
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
 
 
-DOWNLOAD_LOCATION = os.environ.get("DOWNLOAD_LOCATION", "./DOWNLOADS/")
-
-
-
-@Client.on_message(filters.command(["stickerid"]))
-async def stickerid(bot, message):   
-    if message.reply_to_message.sticker:
-       await message.reply(f"**Sticker ID is**  \n `{message.reply_to_message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.reply_to_message.sticker.file_unique_id}`", quote=True)
-    else: 
-       await message.reply("Oops !! Not a sticker file")
 
 
 
@@ -118,6 +105,15 @@ CLOSE_BUTTON = InlineKeyboardMarkup(
         ]]
     )
 
+
+@Client.on_message(filters.command(["stickerid"]))
+async def stickerid(bot, message):   
+    if message.reply_to_message.sticker:
+       await message.reply(f"**Sticker ID is**  \n `{message.reply_to_message.sticker.file_id}` \n \n ** Unique ID is ** \n\n`{message.reply_to_message.sticker.file_unique_id}`", quote=True)
+    else: 
+       await message.reply("Oops !! Not a sticker file")
+
+
 @Client.on_callback_query() # callbackQuery()
 async def cb_data(bot, update):  
     if update.data == "cbhelp":
@@ -140,7 +136,7 @@ async def cb_data(bot, update):
         )
 
 
-@Client.on_message(filters.command(["start"]) & filters.private)
+@Client.on_message(filters.command(["starts"]) & filters.private)
 async def start_private(bot, update):
     text = START_STRING_PRIVATE.format(update.from_user.mention)
     reply_markup = START_BUTTON
@@ -151,7 +147,7 @@ async def start_private(bot, update):
         quote=True
     )
 
-@Client.on_message((filters.command(["start"]) & filters.group) | filters.regex("/start@member_sticker_bot"))
+@Client.on_message((filters.command(["starts"]) & filters.group) | filters.regex("/start@member_sticker_bot"))
 async def start_group(bot, update):
     text = START_STRING_GROUP.format(update.chat.title)
     reply_markup = CHANNEL_BUTTON
@@ -174,7 +170,7 @@ async def ping(bot, message):
 async def sticker_group(bot, message):
    try:
       chat_id = int(message.chat.id)
-      count = await Bot.get_chat_members_count(chat_id)
+      count = await get_chat_members_count(chat_id)
       if count == 3:
                     await bot.send_sticker(chat_id,"CAACAgUAAxkBAAIFKmDd2r4NMyGSyWgVu2v-fQxvJxBxAAL1AgACufE4VgHHxPJeyWOKHgQ")
       elif count == 5:
@@ -520,10 +516,10 @@ async def sticker_group(bot, message):
            
             
    except Exception as error:
-            await message.reply("@admins , \nAs per Your Group Permission Members of This Group Can't send Stickers to this Chat (`I'm a Member, Not an Admin`) .\n**To Solve this Issue add me as Admin Or Give permission to send stickers in the Chat** \n\n\n ©@BugHunterBots")
+            await message.reply("THANK YOU😍")
 
 
-@Client.on_message(filters.channel & filters.command(["start"]))
+@Client.on_message(filters.channel & filters.command(["starts"]))
 async def sticker_channel(bot, message):
  chat_id = int(message.chat.id)
  await bot.send_message(text="We Are Working On It",chat_id=chat_id)
@@ -531,7 +527,7 @@ async def sticker_channel(bot, message):
 
 
 
-@Client.on_message(filters.command(["help"]))
+@Client.on_message(filters.command(["helps"]))
 async def help(bot, message):
  chat_id = str(message.chat.id)
  await bot.send_sticker(chat_id,"CAACAgIAAxkBAAEEDq1g6Y5LLm2DtFwCV2pPNCddwwZQHgAC6AkAAowucAABsFGHedLEzeUgBA")  

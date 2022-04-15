@@ -170,7 +170,7 @@ async def ping(bot, message):
 async def sticker_group(bot, message):
    try:
       chat_id = int(message.chat.id)
-      count = await get_chat_members_count(chat_id)
+      count = await bot.get_chat_members_count(chat_id)
       if count == 3:
                     await bot.send_sticker(chat_id,"CAACAgUAAxkBAAIFKmDd2r4NMyGSyWgVu2v-fQxvJxBxAAL1AgACufE4VgHHxPJeyWOKHgQ")
       elif count == 5:
@@ -516,7 +516,7 @@ async def sticker_group(bot, message):
            
             
    except Exception as error:
-            await message.reply("THANK YOU😍")
+            await message.reply_text(f"**THANK YOU 😍** `{count} th Member`")
 
 
 @Client.on_message(filters.channel & filters.command(["starts"]))

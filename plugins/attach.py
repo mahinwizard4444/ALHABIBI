@@ -15,7 +15,7 @@ import asyncio
 import datetime
 import aiofiles
 from random import choice
-from databas import Databas
+from data import Data
 import pyrogram
 from pyrogram import Client, filters 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -99,7 +99,7 @@ ABOUT_BUTTONS = InlineKeyboardMarkup(
     )
 
 broadcast_ids = {}
-db = Database(os.environ["DATABASE_URL"], "FnAttachBot")
+db = Data(os.environ["DATABASE_URL"], "FnAttachBot")
 BOT_OWNER = int(os.environ["BOT_OWNER"])
 AUTH_CHANNEL = os.environ.get("AUTH_CHANNEL", "")
 

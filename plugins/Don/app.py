@@ -11,25 +11,26 @@ Bot = Client(
     api_hash = os.environ["API_HASH"]
 )
 
-@Client.on_message(filters.command(["app"]) & filters.regex(r'https?://[^\s]+'))
+@Client.on_message(filters.command(["app"]))
 async def search(bot, update):
     message = await update.reply_text(
         text="`Analysing your link...`",
         disable_web_page_preview=True,
         quote=True
     )
-    link = update.matches[0].group(0)
-    shorten_urls = await short(link)
-    await message.edit_text(
-        text=shorten_urls,
-        disable_web_page_preview=True
+    await update.reply_text(
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        quote=True
     )
 
 
 
 
-@Client.on_message(filters.private & filters.all)
-async def filter_all(bot, update):
+
+@Client.on_message(filters.private & filters.all) | filters.command(["apps"]))
+async def search(bot, update):
     text = "Search play store apps using below buttons.\n\nMade by @FayasNoushad"
     reply_markup = InlineKeyboardMarkup(
         [

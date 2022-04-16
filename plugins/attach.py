@@ -100,7 +100,7 @@ ABOUT_BUTTONS = InlineKeyboardMarkup(
 
 broadcast_ids = {}
 db = Data(os.environ["DATABASE_URL"], "FnAttachBot")
-BOT_OWNER = int(os.environ["BOT_OWNER"])
+ADMINS = int(os.environ["ADMINS"])
 AUTH_CHANNEL = os.environ.get("AUTH_CHANNEL", "")
 
 async def send_msg(user_id, message):

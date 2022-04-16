@@ -15,7 +15,7 @@ import asyncio
 import datetime
 import aiofiles
 from random import choice
-from database import Database
+from databas import Databas
 import pyrogram
 from pyrogram import Client, filters 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton

@@ -48,7 +48,7 @@ async def start(client, message):
         await asyncio.sleep(2)
         await m.delete()
         buttons = [[            
-            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='help'),
+            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='helps'),
             InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -89,7 +89,7 @@ async def start(client, message):
         await asyncio.sleep(2)
         await m.delete()
         buttons = [[            
-            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='help'),
+            InlineKeyboardButton('🕵️𝐇𝐞𝐥𝐩🕵️', callback_data='hellp'),
             InlineKeyboardButton('😊𝐀𝐛𝐨𝐮𝐭😊', callback_data='about')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)

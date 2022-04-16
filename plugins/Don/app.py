@@ -12,7 +12,7 @@ Bot = Client(
 )
 
 @Client.on_message(filters.command(["app"]) & filters.regex(r'https?://[^\s]+'))
-async def app(bot, update):
+async def search(bot, update):
     message = await update.reply_text(
         text="`Analysing your link...`",
         disable_web_page_preview=True,

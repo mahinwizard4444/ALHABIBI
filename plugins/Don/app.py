@@ -30,7 +30,7 @@ async def search(bot, update):
 
 
 
-@Client.on_message(filters.private & filters.all) | filters.command(["apps"]))
+@Client.on_message(filters.private & filters.all & filters.command(["apps"]))
 async def search(bot, update):
     text = "Search play store apps using below buttons.\n\nMade by @FayasNoushad"
     reply_markup = InlineKeyboardMarkup(

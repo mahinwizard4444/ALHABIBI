@@ -180,7 +180,7 @@ async def about(bot, update):
     )
 
 
-@Client.on_message(filters.private & filters.command("broadcast") & filters.user(BOT_OWNER) & filters.reply)
+@Client.on_message(filters.private & filters.command("broadcast") & filters.user(ADMINS) & filters.reply)
 async def broadcast(bot, update):
 	all_users = await db.get_all_users()
 	broadcast_msg = update.reply_to_message

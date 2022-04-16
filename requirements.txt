@@ -37,7 +37,7 @@ yt_dlp
 wget
 
 
-aiohttp
+aiohttp==3.7.4
 gTTS
 NumPy
 glitch_this

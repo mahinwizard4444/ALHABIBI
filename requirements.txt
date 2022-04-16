@@ -72,3 +72,5 @@ tgcrypto
 python-decouple
 
 pyshorteners
+
+play-scraper

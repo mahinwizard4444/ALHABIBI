@@ -2,6 +2,7 @@ import os
 import play_scraper
 from pyrogram import Client, filters
 from pyrogram.types import *
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
 
 
 Bot = Client(

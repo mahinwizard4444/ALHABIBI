@@ -11,6 +11,22 @@ Bot = Client(
     api_hash = os.environ["API_HASH"]
 )
 
+@Client.on_message(filters.command(["app"]) & filters.regex(r'https?://[^\s]+'))
+async def app(bot, update):
+    message = await update.reply_text(
+        text="`Analysing your link...`",
+        disable_web_page_preview=True,
+        quote=True
+    )
+    link = update.matches[0].group(0)
+    shorten_urls = await short(link)
+    await message.edit_text(
+        text=shorten_urls,
+        disable_web_page_preview=True
+    )
+
+
+
 
 @Client.on_message(filters.private & filters.all)
 async def filter_all(bot, update):
@@ -71,16 +87,3 @@ async def search(bot, update):
 
 
 
-@Client.on_message(filters.command(["url"]) & filters.regex(r'https?://[^\s]+'))
-async def reply_shortens(bot, update):
-    message = await update.reply_text(
-        text="`Analysing your link...`",
-        disable_web_page_preview=True,
-        quote=True
-    )
-    link = update.matches[0].group(0)
-    shorten_urls = await short(link)
-    await message.edit_text(
-        text=shorten_urls,
-        disable_web_page_preview=True
-    )

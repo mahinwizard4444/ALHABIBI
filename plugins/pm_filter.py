@@ -2478,7 +2478,7 @@ async def auto_filter(client, msg: pyrogram.types.Message, spoll=False):
     else:
         fmsg = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
     
-    await asyncio.sleep(10)
+    await asyncio.sleep(180)
     await fmsg.delete()
     await message.reply_text(
     text=f"⚙️ {message.from_user.mention} Fɪʟᴛᴇʀ Fᴏʀ {search} Cʟᴏꜱᴇᴅ 🗑️",
